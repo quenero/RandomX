@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 int main() {
-	const char myKey[] = "RandomX example key";
-	const char myInput[] = "RandomX example input";
+	const char myKey[] = "Arqma_RX example key";
+	const char myInput[] = "Arqma_RX example input";
 	char hash[RANDOMX_HASH_SIZE];
 
 	randomx_cache *myCache = randomx_alloc_cache(RANDOMX_FLAG_DEFAULT);

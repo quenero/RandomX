@@ -57,7 +57,7 @@ namespace randomx {
 		}
 		asmCode.str(std::string()); //clear
 		for (unsigned i = 0; i < prog.getSize(); ++i) {
-			asmCode << "randomx_isn_" << i << ":" << std::endl;
+			asmCode << "arqma_rx_isn_" << i << ":" << std::endl;
 			Instruction& instr = prog(i);
 			instr.src %= RegistersCount;
 			instr.dst %= RegistersCount;
@@ -555,7 +555,7 @@ namespace randomx {
 			imm &= ~(1L << (shift - 1));
 		asmCode << "\tadd " << regR[reg] << ", " << imm << std::endl;
 		asmCode << "\ttest " << regR[reg] << ", " << (ConditionMask << shift) << std::endl;
-		asmCode << "\tjz randomx_isn_" << target << std::endl;
+		asmCode << "\tjz arqma_rx_isn_" << target << std::endl;
 		//mark all registers as used
 		for (unsigned j = 0; j < RegistersCount; ++j) {
 			registerUsage[j] = i;
