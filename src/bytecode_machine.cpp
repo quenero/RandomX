@@ -248,7 +248,7 @@ namespace randomx {
 				auto dst = instr.dst % RegistersCount;
 				ibc.type = InstructionType::IMUL_R;
 				ibc.idst = &nreg->r[dst];
-				ibc.imm = arqma_rx_reciprocal(divisor);
+				ibc.imm = randomx_reciprocal(divisor);
 				ibc.isrc = &ibc.imm;
 				registerUsage[dst] = i;
 			}
