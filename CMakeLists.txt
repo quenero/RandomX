@@ -29,7 +29,7 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-set (randomx-sources
+set (randomx_sources
 src/aes_hash.cpp
 src/argon2_ref.c
 src/bytecode_machine.cpp
@@ -93,7 +93,7 @@ endfunction()
 
 # x86-64
 if(ARCH_ID STREQUAL "x86_64" OR ARCH_ID STREQUAL "x86-64" OR ARCH_ID STREQUAL "amd64")
-  list(APPEND randomx-sources
+  list(APPEND randomx_sources
     src/jit_compiler_x86_static.S
     src/jit_compiler_x86.cpp)
   # cheat because cmake and ccache hate each other
@@ -117,7 +117,7 @@ endif()
 
 # ARMv8
 if(ARM_ID STREQUAL "aarch64" OR ARM_ID STREQUAL "arm64" OR ARM_ID STREQUAL "armv8-a")
-  list(APPEND randomx-sources
+  list(APPEND randomx_sources
     src/jit_compiler_a64_static.S
     src/jit_compiler_a64.cpp)
   # cheat because cmake and ccache hate each other
@@ -134,7 +134,7 @@ endif()
 set(RANDOMX_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/src" CACHE STRING "RandomX Include path")
 
 add_library(randomx
-  ${randomx-sources})
+  ${randomx_sources})
 set_property(TARGET randomx PROPERTY POSITION_INDEPENDENT_CODE ON)
 set_property(TARGET randomx PROPERTY CXX_STANDARD 11)
 set_property(TARGET randomx PROPERTY CXX_STANDARD_REQUIRED ON)

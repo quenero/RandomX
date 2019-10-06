@@ -41,7 +41,7 @@ int main() {
 	std::cout << "Avg. code size: " << (codesize / (double)count) << std::endl;
 	std::cout << "Avg. x86 ops: " << (macroOps / (double)count) << std::endl;
 	std::cout << "Avg. mul. count: " << (mulCount / (double)count) << std::endl;
-	std::cout << "Avg. Arqma_RX ops: " << (size / (double)count) << std::endl;
+	std::cout << "Avg. RandomARQ ops: " << (size / (double)count) << std::endl;
 
 	std::cout << "Frequencies: " << std::endl;
 	for (unsigned j = 0; j < (int)randomx::SuperscalarInstructionType::COUNT; ++j) {

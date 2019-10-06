@@ -4,8 +4,8 @@
 #include <thread>
 
 int main() {
-	const char myKey[] = "Arqma_RX example key";
-	const char myInput[] = "Arqma_RX example input";
+	const char myKey[] = "RandomX example key";
+	const char myInput[] = "RandomX example input";
 	char hash[RANDOMX_HASH_SIZE];
 
 	randomx_cache *myCache = randomx_alloc_cache((randomx_flags)(RANDOMX_FLAG_JIT | RANDOMX_FLAG_LARGE_PAGES));

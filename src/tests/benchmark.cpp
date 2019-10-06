@@ -151,7 +151,7 @@ int main(int argc, char** argv) {
 
 	store32(&seed, seedValue);
 
-	std::cout << "Arqma_RX benchmark v1.0.0" << std::endl;
+	std::cout << "RandomARQ benchmark v1.0.0" << std::endl;
 
 	if (help || (!miningMode && !verificationMode)) {
 		printUsage(argv[0]);
