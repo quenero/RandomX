@@ -29,7 +29,7 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-set (arqma_rx-sources
+set (randomx-sources
 src/aes_hash.cpp
 src/argon2_ref.c
 src/bytecode_machine.cpp
@@ -93,7 +93,7 @@ endfunction()
 
 # x86-64
 if(ARCH_ID STREQUAL "x86_64" OR ARCH_ID STREQUAL "x86-64" OR ARCH_ID STREQUAL "amd64")
-  list(APPEND arqma_rx-sources
+  list(APPEND randomx-sources
     src/jit_compiler_x86_static.S
     src/jit_compiler_x86.cpp)
   # cheat because cmake and ccache hate each other
@@ -117,7 +117,7 @@ endif()
 
 # ARMv8
 if(ARM_ID STREQUAL "aarch64" OR ARM_ID STREQUAL "arm64" OR ARM_ID STREQUAL "armv8-a")
-  list(APPEND arqma_rx-sources
+  list(APPEND randomx-sources
     src/jit_compiler_a64_static.S
     src/jit_compiler_a64.cpp)
   # cheat because cmake and ccache hate each other
@@ -131,42 +131,42 @@ if(ARM_ID STREQUAL "aarch64" OR ARM_ID STREQUAL "arm64" OR ARM_ID STREQUAL "armv
   endif()
 endif()
 
-set(RANDOMX_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/src" CACHE STRING "Arqma_RX Include path")
+set(RANDOMX_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/src" CACHE STRING "RandomX Include path")
 
-add_library(arqma_rx
-  ${arqma_rx-sources})
-set_property(TARGET arqma_rx PROPERTY POSITION_INDEPENDENT_CODE ON)
-set_property(TARGET arqma_rx PROPERTY CXX_STANDARD 11)
-set_property(TARGET arqma_rx PROPERTY CXX_STANDARD_REQUIRED ON)
-install(TARGETS arqma_rx
+add_library(randomx
+  ${randomx-sources})
+set_property(TARGET randomx PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET randomx PROPERTY CXX_STANDARD 11)
+set_property(TARGET randomx PROPERTY CXX_STANDARD_REQUIRED ON)
+install(TARGETS randomx
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib)
 
-add_executable(arqma_rx-tests
+add_executable(randomx-tests
   src/tests/tests.cpp)
-target_link_libraries(arqma_rx-tests
-  PRIVATE arqma_rx)
-set_property(TARGET arqma_rx-tests PROPERTY POSITION_INDEPENDENT_CODE ON)
-set_property(TARGET arqma_rx-tests PROPERTY CXX_STANDARD 11)
+target_link_libraries(randomx-tests
+  PRIVATE randomx)
+set_property(TARGET randomx-tests PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET randomx-tests PROPERTY CXX_STANDARD 11)
 
-add_executable(arqma_rx-codegen
+add_executable(randomx-codegen
   src/tests/code-generator.cpp)
-target_link_libraries(arqma_rx-codegen
-  PRIVATE arqma_rx)
+target_link_libraries(randomx-codegen
+  PRIVATE randomx)
 
-set_property(TARGET arqma_rx-codegen PROPERTY POSITION_INDEPENDENT_CODE ON)
-set_property(TARGET arqma_rx-codegen PROPERTY CXX_STANDARD 11)
+set_property(TARGET randomx-codegen PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET randomx-codegen PROPERTY CXX_STANDARD 11)
 
 if(NOT Threads_FOUND AND UNIX AND NOT APPLE)
   set(THREADS_PREFER_PTHREAD_FLAG ON)
   find_package(Threads)
 endif()
 
-add_executable(arqma_rx-benchmark
+add_executable(randomx-benchmark
   src/tests/benchmark.cpp
   src/tests/affinity.cpp)
-target_link_libraries(arqma_rx-benchmark
-  PRIVATE arqma_rx
+target_link_libraries(randomx-benchmark
+  PRIVATE randomx
   PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 
 include(CheckCXXSourceCompiles)
@@ -179,8 +179,8 @@ int main() {
 }" HAVE_CXX_ATOMICS)
 
 if(NOT HAVE_CXX_ATOMICS)
-  target_link_libraries(arqma_rx-benchmark
+  target_link_libraries(randomx-benchmark
     PRIVATE "atomic")
 endif()
-set_property(TARGET arqma_rx-benchmark PROPERTY POSITION_INDEPENDENT_CODE ON)
-set_property(TARGET arqma_rx-benchmark PROPERTY CXX_STANDARD 11)
+set_property(TARGET randomx-benchmark PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET randomx-benchmark PROPERTY CXX_STANDARD 11)
