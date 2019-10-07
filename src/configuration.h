@@ -41,16 +41,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define RANDOMX_ARGON_SALT         "RandomARQ\x01"
 
 //Number of random Cache accesses per Dataset item. Minimum is 2.
-#define RANDOMX_CACHE_ACCESSES     16
+#define RANDOMX_CACHE_ACCESSES     8
 
 //Target latency for SuperscalarHash (in cycles of the reference CPU).
 #define RANDOMX_SUPERSCALAR_LATENCY   170
 
 //Dataset base size in bytes. Must be a power of 2.
-#define RANDOMX_DATASET_BASE_SIZE  1073741824
+#define RANDOMX_DATASET_BASE_SIZE  2147483648
 
 //Dataset extra size. Must be divisible by 64.
-#define RANDOMX_DATASET_EXTRA_SIZE 16777152
+#define RANDOMX_DATASET_EXTRA_SIZE 33554368
 
 //Number of instructions in a RandomX program. Must be divisible by 8.
 #define RANDOMX_PROGRAM_SIZE       256
