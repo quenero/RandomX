@@ -79,7 +79,7 @@ void printUsage(const char* executable) {
 	std::cout << "  --softAes         use software AES (default: x86 AES-NI)" << std::endl;
 	std::cout << "  --nonce  N        seed nonce (default: 1000)" << std::endl;
 	std::cout << "  --genAsm          generate x86-64 asm code for nonce N" << std::endl;
-	std::cout << "  --genNative       generate RandomX code for nonce N" << std::endl;
+	std::cout << "  --genNative       generate RandomARQ code for nonce N" << std::endl;
 	std::cout << "  --genSuperscalar  generate superscalar program for nonce N" << std::endl;
 }
 

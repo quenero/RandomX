@@ -70,7 +70,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif
 
 /***************Instance and Position constructors**********/
-
 static void load_block(block *dst, const void *input) {
 	unsigned i;
 	for (i = 0; i < ARGON2_QWORDS_IN_BLOCK; ++i) {
@@ -141,21 +140,17 @@ uint32_t randomx_argon2_index_alpha(const argon2_instance_t *instance,
 	 * relative position */
 	relative_position = pseudo_rand;
 	relative_position = relative_position * relative_position >> 32;
-	relative_position = reference_area_size - 1 -
-		(reference_area_size * relative_position >> 32);
+	relative_position = reference_area_size - 1 -	(reference_area_size * relative_position >> 32);
 
 	/* 1.2.5 Computing starting position */
 	start_position = 0;
 
 	if (0 != position->pass) {
-		start_position = (position->slice == ARGON2_SYNC_POINTS - 1)
-			? 0
-			: (position->slice + 1) * instance->segment_length;
+		start_position = (position->slice == ARGON2_SYNC_POINTS - 1) ? 0 : (position->slice + 1) * instance->segment_length;
 	}
 
 	/* 1.2.6. Computing absolute position */
-	absolute_position = (start_position + relative_position) %
-		instance->lane_length; /* absolute position */
+	absolute_position = (start_position + relative_position) % instance->lane_length; /* absolute position */
 	return absolute_position;
 }
 

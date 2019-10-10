@@ -156,7 +156,7 @@ int main(int argc, char** argv) {
 
 	store32(&seed, seedValue);
 
-	std::cout << "RandomX benchmark v1.1.3" << std::endl;
+	std::cout << "RandomARQ benchmark v1.0.0" << std::endl;
 
 	if (help || (!miningMode && !verificationMode)) {
 		printUsage(argv[0]);
@@ -170,6 +170,16 @@ int main(int argc, char** argv) {
 	randomx_dataset* dataset;
 	randomx_cache* cache;
 	randomx_flags flags = RANDOMX_FLAG_DEFAULT;
+	
+	if(ssse3) {
+		flags = (randomx_flags)(flags | RANDOMX_FLAG_ARGON2_SSSE3);
+		std::cout << " - Argon2 implementation: SSSE3" << std::endl;
+	}
+
+	if(avx2) {
+		flags = (randomx_flags)(flags | RANDOMX_FLAG_ARGON2_AVX2);
+		std::cout << " - Argon2 implementation: AVX2" << std::endl;
+	}
 
 	if (ssse3) {
 		flags = (randomx_flags)(flags | RANDOMX_FLAG_ARGON2_SSSE3);
