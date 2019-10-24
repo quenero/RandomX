@@ -1,4 +1,5 @@
 # Copyright (c) 2019, The Monero Project
+# Copyright (c) 2019, The Arqma Network
 # 
 # All rights reserved.
 # 
@@ -26,7 +27,7 @@
 # STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 # THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required(VERSION 3.5)
 
 set (randomx_sources
 src/aes_hash.cpp
@@ -94,7 +95,7 @@ function(add_flag flag)
 endfunction()
 
 # x86-64
-if (ARCH_ID STREQUAL "x86_64" OR ARCH_ID STREQUAL "x86-64" OR ARCH_ID STREQUAL "amd64")
+if(ARCH_ID STREQUAL "x86_64" OR ARCH_ID STREQUAL "x86-64" OR ARCH_ID STREQUAL "amd64")
   list(APPEND randomx_sources
     src/jit_compiler_x86_static.S
     src/jit_compiler_x86.cpp)
@@ -119,7 +120,7 @@ if (ARCH_ID STREQUAL "x86_64" OR ARCH_ID STREQUAL "x86-64" OR ARCH_ID STREQUAL "
 endif()
 
 # PowerPC
-if (ARCH_ID STREQUAL "ppc64" OR ARCH_ID STREQUAL "ppc64le")
+if(ARCH_ID STREQUAL "ppc64" OR ARCH_ID STREQUAL "ppc64le")
   if(ARCH STREQUAL "native")
     add_flag("-mcpu=native")
   endif()
@@ -127,7 +128,7 @@ if (ARCH_ID STREQUAL "ppc64" OR ARCH_ID STREQUAL "ppc64le")
 endif()
 
 # ARMv8
-if (ARM_ID STREQUAL "aarch64" OR ARM_ID STREQUAL "arm64" OR ARM_ID STREQUAL "armv8-a")
+if(ARM_ID STREQUAL "aarch64" OR ARM_ID STREQUAL "arm64" OR ARM_ID STREQUAL "armv8-a")
   list(APPEND randomx_sources
     src/jit_compiler_a64_static.S
     src/jit_compiler_a64.cpp)
@@ -176,7 +177,7 @@ target_link_libraries(randomx-codegen
 set_property(TARGET randomx-codegen PROPERTY POSITION_INDEPENDENT_CODE ON)
 set_property(TARGET randomx-codegen PROPERTY CXX_STANDARD 11)
 
-if (NOT Threads_FOUND AND UNIX AND NOT APPLE)
+if(NOT Threads_FOUND AND UNIX AND NOT APPLE)
   set(THREADS_PREFER_PTHREAD_FLAG ON)
   find_package(Threads)
 endif()
