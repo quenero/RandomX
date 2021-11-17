@@ -38,7 +38,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define RANDOMX_ARGON_LANES        2
 
 //Argon2d salt
-#define RANDOMX_ARGON_SALT         "RandomXL\x12"
+#define RANDOMX_ARGON_SALT         "RandomQ\x06"
 
 //Number of random Cache accesses per Dataset item. Minimum is 2.
 #define RANDOMX_CACHE_ACCESSES     8
